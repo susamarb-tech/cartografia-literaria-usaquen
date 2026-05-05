@@ -42,9 +42,24 @@
         <script src="data/CentroBabilonia_5.js"></script>
         <script src="data/PlazoletaMariposa_6.js"></script>
         <script>
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+
+            if (e.target.feature.geometry.type === 'LineString' || e.target.feature.geometry.type === 'MultiLineString') {
+              highlightLayer.setStyle({
+                color: 'rgba(255, 255, 0, 1.00)',
+              });
+            } else {
+              highlightLayer.setStyle({
+                fillColor: 'rgba(255, 255, 0, 1.00)',
+                fillOpacity: 1
+              });
+            }
+        }
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[3.879879417946798,-74.97966221188965],[4.952459790875839,-73.08085384850644]]);
+        }).fitBounds([[4.19840168790474,-74.93688685389486],[5.270505342660611,-73.0894167980598]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/qgis2web/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -129,6 +144,16 @@
         layer_OSMStandard_0;
         map.addLayer(layer_OSMStandard_0);
         function pop_Localidades_1(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (var i in e.target._eventParents) {
+                        if (typeof e.target._eventParents[i].resetStyle === 'function') {
+                            e.target._eventParents[i].resetStyle(e.target);
+                        }
+                    }
+                },
+                mouseover: highlightFeature,
+            });
             var popupContent = '<table>\
                     <tr>\
                         <td class="visible-with-data" id="LocNombre" colspan="2"><strong>LocNombre</strong><br />' + (feature.properties['LocNombre'] !== null ? autolinker.link(String(feature.properties['LocNombre']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -171,6 +196,16 @@
         bounds_group.addLayer(layer_Localidades_1);
         map.addLayer(layer_Localidades_1);
         function pop_LocalidaddeUsaqun_2(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (var i in e.target._eventParents) {
+                        if (typeof e.target._eventParents[i].resetStyle === 'function') {
+                            e.target._eventParents[i].resetStyle(e.target);
+                        }
+                    }
+                },
+                mouseover: highlightFeature,
+            });
             var popupContent = '<table>\
                     <tr>\
                         <td class="visible-with-data" id="LocNombre" colspan="2"><strong>LocNombre</strong><br />' + (feature.properties['LocNombre'] !== null ? autolinker.link(String(feature.properties['LocNombre']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -213,6 +248,16 @@
         bounds_group.addLayer(layer_LocalidaddeUsaqun_2);
         map.addLayer(layer_LocalidaddeUsaqun_2);
         function pop_ParqueFundacionaldeUsaqun_3(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (var i in e.target._eventParents) {
+                        if (typeof e.target._eventParents[i].resetStyle === 'function') {
+                            e.target._eventParents[i].resetStyle(e.target);
+                        }
+                    }
+                },
+                mouseover: highlightFeature,
+            });
             var popupContent = '<table>\
                     <tr>\
                         <td class="visible-with-data" id="Lugar" colspan="2"><strong>Lugar</strong><br />' + (feature.properties['Lugar'] !== null ? autolinker.link(String(feature.properties['Lugar']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -270,6 +315,16 @@
         bounds_group.addLayer(layer_ParqueFundacionaldeUsaqun_3);
         map.addLayer(layer_ParqueFundacionaldeUsaqun_3);
         function pop_BibliotecaServita_4(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (var i in e.target._eventParents) {
+                        if (typeof e.target._eventParents[i].resetStyle === 'function') {
+                            e.target._eventParents[i].resetStyle(e.target);
+                        }
+                    }
+                },
+                mouseover: highlightFeature,
+            });
             var popupContent = '<table>\
                     <tr>\
                         <td class="visible-with-data" id="Lugar" colspan="2"><strong>Lugar</strong><br />' + (feature.properties['Lugar'] !== null ? autolinker.link(String(feature.properties['Lugar']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -327,6 +382,16 @@
         bounds_group.addLayer(layer_BibliotecaServita_4);
         map.addLayer(layer_BibliotecaServita_4);
         function pop_CentroBabilonia_5(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (var i in e.target._eventParents) {
+                        if (typeof e.target._eventParents[i].resetStyle === 'function') {
+                            e.target._eventParents[i].resetStyle(e.target);
+                        }
+                    }
+                },
+                mouseover: highlightFeature,
+            });
             var popupContent = '<table>\
                     <tr>\
                         <td class="visible-with-data" id="Lugar" colspan="2"><strong>Lugar</strong><br />' + (feature.properties['Lugar'] !== null ? autolinker.link(String(feature.properties['Lugar']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -384,6 +449,16 @@
         bounds_group.addLayer(layer_CentroBabilonia_5);
         map.addLayer(layer_CentroBabilonia_5);
         function pop_PlazoletaMariposa_6(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (var i in e.target._eventParents) {
+                        if (typeof e.target._eventParents[i].resetStyle === 'function') {
+                            e.target._eventParents[i].resetStyle(e.target);
+                        }
+                    }
+                },
+                mouseover: highlightFeature,
+            });
             var popupContent = '<table>\
                     <tr>\
                         <th scope="row">Lugar</th>\
